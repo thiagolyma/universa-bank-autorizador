@@ -1,0 +1,13 @@
+br\org\universa\bank\autorizador\negocio\conta\ContaTestDataBuilder$3.class
+br\org\universa\bank\autorizador\negocio\conta\ContaMediatorTest.class
+br\org\universa\bank\autorizador\servico\SPBAdapterTest.class
+br\org\universa\bank\autorizador\negocio\transacao\AbstractTransacaoMediatorTest.class
+br\org\universa\bank\autorizador\servico\AutorizadorFacadeTest.class
+br\org\universa\bank\autorizador\negocio\conta\ContaTestDataBuilder.class
+br\org\universa\bank\autorizador\negocio\conta\ContaTestDataBuilder$1.class
+br\org\universa\bank\autorizador\negocio\transacao\TransacaoFactoryTest.class
+br\org\universa\bank\autorizador\negocio\conta\ClienteTestDataBuilder$1.class
+br\org\universa\bank\autorizador\negocio\conta\ContaTestDataBuilder$2.class
+br\org\universa\bank\autorizador\negocio\docted\DocTedBuilderTest.class
+br\org\universa\bank\autorizador\negocio\conta\ClienteTestDataBuilder.class
+br\org\universa\bank\autorizador\negocio\comum\EnumerationTest.class
