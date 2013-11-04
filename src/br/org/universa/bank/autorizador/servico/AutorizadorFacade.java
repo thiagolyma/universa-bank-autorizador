@@ -17,7 +17,9 @@ import java.util.List;
 import br.org.universa.bank.autorizador.negocio.autorizacao.Autorizacao;
 import br.org.universa.bank.autorizador.negocio.conta.Conta;
 import br.org.universa.bank.autorizador.negocio.conta.ContaMediator;
+import br.org.universa.bank.autorizador.negocio.transacao.AbstractTransacaoMediator;
 import br.org.universa.bank.autorizador.negocio.transacao.Transacao;
+import br.org.universa.bank.autorizador.negocio.transacao.TransacaoFactory;
 import br.org.universa.bank.autorizador.negocio.transacao.TransacaoMediator;
 
 public class AutorizadorFacade {
@@ -36,9 +38,9 @@ public class AutorizadorFacade {
 	}
 
 	public Autorizacao executa(Transacao transacao) {
-		
-
-		return null;
+		AbstractTransacaoMediator tratador = TransacaoFactory.get().cria(transacao);
+		Autorizacao autorizacao = tratador.executa(transacao);
+		return autorizacao;
 	}
 
 	public Conta consultaConta(Integer agencia, Integer numero)

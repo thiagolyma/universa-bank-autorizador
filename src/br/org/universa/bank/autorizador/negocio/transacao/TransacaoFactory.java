@@ -35,8 +35,16 @@ public class TransacaoFactory {
 	}
 
 	public AbstractTransacaoMediator cria(Transacao transacao) {
-
-		return null;
+		AbstractTransacaoMediator tratador = null;
+		carregaPropriedades();
+		String caminhoDaClasse = propriedades.getProperty(transacao.getTipo().getChave().toString());
+		try {
+			tratador = (AbstractTransacaoMediator) Class.forName(caminhoDaClasse).newInstance();
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return tratador;
 	}
 
 	private static void carregaPropriedades() {

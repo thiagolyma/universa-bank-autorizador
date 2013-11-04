@@ -1,5 +1,6 @@
 /*
  * PhD Software do Brasil.
+
  * Autor: Flávio Roberto (professor.flavio.roberto@gmail.com)
  *
  * Autorizador Bancário
@@ -21,7 +22,16 @@ public abstract class AbstractTransacaoMediator {
 	}
 
 	public Autorizacao executa(Transacao transacao) {
-
-		return null;
+		Autorizacao autorizacao = new Autorizacao();
+		autorizacao.setTransacao(transacao);
+		try{
+			executaRegrasEspecificas(transacao);
+			autorizacao.autorizada();
+		}catch(Exception e){
+			autorizacao.negada(e.getMessage());
+		}
+		return autorizacao;
 	}
+	//Usando padrão templat metodo
+	protected abstract void executaRegrasEspecificas(Transacao transacao) throws Exception;
 }
