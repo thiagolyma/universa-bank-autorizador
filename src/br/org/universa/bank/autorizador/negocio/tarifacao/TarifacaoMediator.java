@@ -28,7 +28,17 @@ public class TarifacaoMediator {
 		return instancia;
 	}
 
-	public void tarifaTransacao(Transacao transacao) throws Exception {
-		// TODO Implementar
+	public double tarifaTransacao(Transacao transacao) throws Exception {
+		Tarifacao tarifacaoPorValor = new TarifacaoPorValor();
+		Tarifacao tarifacaoCestaDeServico = new TarifacaoPorCestaDeServico();
+		Tarifacao tarifacaoPorQuantidade = new TarifacaoPorQuantidade();
+		Tarifacao semTarifacao = new SemTarifacao();
+		
+		tarifacaoPorValor.setProximaTarifacao(tarifacaoCestaDeServico);
+		tarifacaoCestaDeServico.setProximaTarifacao(tarifacaoPorQuantidade);
+		tarifacaoPorQuantidade.setProximaTarifacao(semTarifacao);
+		
+		return tarifacaoPorValor.calculaTarifa(transacao);
+		
 	}
 }

@@ -19,16 +19,9 @@ public class FundoDeInvestimentoMediator {
 		double rentabilidadeLiquida = rentabilidadeBruta * 0.75;
 		return rentabilidadeLiquida;
 	}
-	//Refatorar fazendo uma fábrica
+	
 	private FundoDeInvestimento criaFundoDeInvestimento(TipoDoFundo tipo){
-		FundoDeInvestimento fundo= null;
-		if (tipo.equals(TipoDoFundo.CONSERVADOR)){
-			fundo = new Conservador();
-		}else if(tipo.equals(TipoDoFundo.MODERADO)){
-			fundo = new Moderado();
-		}else if(tipo.equals(TipoDoFundo.AGRESSIVO)){
-			fundo = new Agressivo();
-		}
+		FundoDeInvestimento fundo= FundoDeInvestimentoFactory.get().cria(tipo);
 		return fundo;
 	}
 }

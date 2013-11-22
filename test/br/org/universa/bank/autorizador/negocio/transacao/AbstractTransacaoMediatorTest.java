@@ -95,8 +95,12 @@ public class AbstractTransacaoMediatorTest {
 
 	@Test
 	public void naoDeveAutorizarTransacaoComDadosInsuficientes() {
+		
 		Transacao transacao = new Transacao();
 		transacao.setTipo(TipoDaTransacao.DEPOSITO_EM_CONTA);
+		transacao.setAgencia(3);
+		transacao.setConta(3);
+		transacao.setValor(10.0);
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()
 				.cria(transacao);
@@ -130,8 +134,8 @@ public class AbstractTransacaoMediatorTest {
 		TransacaoDeInvestimentoEmFundo transacao = new TransacaoDeInvestimentoEmFundo();
 		transacao.setCanalDeAtendimento(CanalDeAtendimento.INTERNET_BANKING);
 		transacao.setTipo(TipoDaTransacao.INVESTIMENTO_EM_FUNDO);
-		transacao.setAgencia(1);
-		transacao.setConta(1);
+		transacao.setAgencia(3);
+		transacao.setConta(3);
 		transacao.setValor(1.00);
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()
@@ -147,8 +151,7 @@ public class AbstractTransacaoMediatorTest {
 	public void naoDeveAutorizarTransacaoDeTransferenciaComDadosInsuficientes() {
 		TransacaoDeTransferencia transacao = new TransacaoDeTransferencia();
 		transacao.setCanalDeAtendimento(CanalDeAtendimento.INTERNET_BANKING);
-		transacao
-				.setTipo(TipoDaTransacao.TRANSFERENCIA_ENTRE_CONTAS);
+		transacao.setTipo(TipoDaTransacao.TRANSFERENCIA_ENTRE_CONTAS);
 		transacao.setAgencia(1);
 		transacao.setConta(1);
 		transacao.setValor(1.00);
@@ -505,8 +508,8 @@ public class AbstractTransacaoMediatorTest {
 		transacao.setConta(3);
 		transacao.setValor(890.00);
 		transacao.setBancoFavorecido(444);
-		transacao.setAgenciaFavorecida(5555);
-		transacao.setContaFavorecida(6666666);
+		transacao.setAgenciaFavorecida(4);
+		transacao.setContaFavorecida(4);
 		transacao.setCpfDoTitularDaContaFavorecida("77276469115");
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()
@@ -527,7 +530,7 @@ public class AbstractTransacaoMediatorTest {
 						.get(0).getValor(), 0.001);
 				Assert.assertEquals(TipoDoLancamento.DEBITO, conta
 						.getLancamentosDaConta().get(0).getTipoDoLancamento());
-				Assert.assertEquals("DOC-C para a conta 444:5555:6666666",
+				Assert.assertEquals("DOC-C para a conta 444:4:4",
 						conta.getLancamentosDaConta().get(0).getDescricao());
 			}
 		} catch (Exception e) {
@@ -544,8 +547,8 @@ public class AbstractTransacaoMediatorTest {
 		transacao.setConta(4);
 		transacao.setValor(3000.00);
 		transacao.setBancoFavorecido(444);
-		transacao.setAgenciaFavorecida(5555);
-		transacao.setContaFavorecida(6666666);
+		transacao.setAgenciaFavorecida(3);
+		transacao.setContaFavorecida(3);
 		transacao.setCpfDoTitularDaContaFavorecida("77276469115");
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()
@@ -566,7 +569,7 @@ public class AbstractTransacaoMediatorTest {
 						conta.getLancamentosDaConta().get(0).getValor(), 0.001);
 				Assert.assertEquals(TipoDoLancamento.DEBITO, conta
 						.getLancamentosDaConta().get(0).getTipoDoLancamento());
-				Assert.assertEquals("TED-D para a conta 444:5555:6666666",
+				Assert.assertEquals("TED-C para a conta 444:3:3",
 						conta.getLancamentosDaConta().get(0).getDescricao());
 			}
 		} catch (Exception e) {
@@ -595,6 +598,7 @@ public class AbstractTransacaoMediatorTest {
 						.getLancamentosDaConta().get(1).getTipoDoLancamento());
 				Assert.assertEquals("Tarifação - Depósito em Conta", conta
 						.getLancamentosDaConta().get(1).getDescricao());
+				
 			}
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
@@ -642,8 +646,8 @@ public class AbstractTransacaoMediatorTest {
 		transacao.setConta(3);
 		transacao.setValor(900.00);
 		transacao.setBancoFavorecido(123);
-		transacao.setAgenciaFavorecida(1234);
-		transacao.setContaFavorecida(1234567);
+		transacao.setAgenciaFavorecida(4);
+		transacao.setContaFavorecida(4);
 		transacao.setCpfDoTitularDaContaFavorecida("02728594430");
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()
@@ -681,8 +685,8 @@ public class AbstractTransacaoMediatorTest {
 		transacao.setConta(4);
 		transacao.setValor(1000.00);
 		transacao.setBancoFavorecido(123);
-		transacao.setAgenciaFavorecida(1234);
-		transacao.setContaFavorecida(1234567);
+		transacao.setAgenciaFavorecida(3);
+		transacao.setContaFavorecida(3);
 		transacao.setCpfDoTitularDaContaFavorecida("02728594430");
 
 		AbstractTransacaoMediator tratadorDaTransacao = TransacaoFactory.get()

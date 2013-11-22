@@ -18,7 +18,7 @@ public class TransacaoDeInvestimentoEmFundoMediator extends AbstractTransacaoMed
 		double rentabilidade = FundoDeInvestimentoMediator.get().calculaRentabilidade(transacaoDeInvestimento.getTipoDoFundo(), transacao.getValor());
 		conta.credita(rentabilidade);
 		conta.adicionaLancamentoDaConta(new LancamentoDaConta(transacao.getTipo().getTipoDoLancamento(),
-				transacao.getTipo().getValor(),
+				transacao.getTipo().getValor() + " " + transacaoDeInvestimento.getTipoDoFundo().getValor(),
 				rentabilidade));
 		ContaDAO.get().atualiza(conta);
 	}
@@ -28,5 +28,6 @@ public class TransacaoDeInvestimentoEmFundoMediator extends AbstractTransacaoMed
 			throw new Exception(Mensagens.SALDO_INSUFICIENTE);
 		}
 	}
+
 
 }
